@@ -19,7 +19,7 @@ class CodeReviewResult(BaseModel):
 
 
 def planner_node(state: DevTeamState):
-    print("\n📋 [Planner Node] Drafting technical documentation map via Groq...")
+    print("\n [Planner Node] Drafting technical documentation map via Groq...")
     system_msg = "You are a Principal Software Architect. Break down the user request into pseudo-code blueprints."
     user_msg = f"Feature Request: {state['feature_request']}"
     
@@ -29,7 +29,7 @@ def planner_node(state: DevTeamState):
 
 def coder_node(state: DevTeamState):
     current_iter = state.get("iterations", 0) + 1
-    print(f"\n💻 [Coder Node] Translating specs into code... (Iteration {current_iter}) via Groq...")
+    print(f"\n [Coder Node] Translating specs into code... (Iteration {current_iter}) via Groq...")
     system_msg = "You are a Senior Python Developer. Output ONLY valid, raw python code block. No explanations, no markdown styling tags."
     
     user_msg = f"Architecture Plan:\n{state['architecture_plan']}"
@@ -41,7 +41,7 @@ def coder_node(state: DevTeamState):
 
 
 def reviewer_node(state: DevTeamState):
-    print("\n🔍 [Reviewer Node] Executing structural audits via Groq...")
+    print("\n [Reviewer Node] Executing structural audits via Groq...")
     system_msg = "You are a Senior QA Specialist. Verify the source code matches requirements and looks error-free."
     user_msg = f"Plan:\n{state['architecture_plan']}\n\nGenerated Code:\n{state['source_code']}"
     

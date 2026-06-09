@@ -8,7 +8,7 @@ from nodes import planner_node, coder_node, reviewer_node
 def route_review_verdict(state: DevTeamState) -> Literal["coder", "finish"]:
     # Safety Valve: Hard-stop infinite iteration loops to control tokens billing
     if state.get("iterations", 0) >= 3:
-        print("\n🚨 [System Guardrail] Loops capped out. Force-quitting.")
+        print("\n [System Guardrail] Loops capped out. Force-quitting.")
         return "finish"
         
     if state.get("status") == "review_passed":
